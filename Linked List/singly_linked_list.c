@@ -76,6 +76,21 @@ void deleteAtEnd() {
 
 }
 
+void reverse() {
+    struct node *prev = NULL;
+    struct node *current = head;
+    struct node *next = NULL;
+
+    while (current != NULL) {
+        next = current->next;
+        current->next = prev;
+        prev = current;
+        current = next;
+    }
+    head = prev;
+}
+
+
 int main() {
     
     insertAtEnd(100);
@@ -96,6 +111,9 @@ int main() {
    
     insertAtEnd(1);
     insertAtEnd(10);
+    printList();
+    printf("\n");
+    reverse();
     printList();
     return 0;
 

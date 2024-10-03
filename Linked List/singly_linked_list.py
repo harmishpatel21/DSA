@@ -47,11 +47,21 @@ class SinglyLinkedList:
         while current.next.next is not None:
             current = current.next
         current.next = None
+    
+    def reverse(self):
+        prev = None
+        current = self.head
 
+        while current is not None:
+            next_node = current.next
+            current.next = prev
+            prev = current
+            current = next_node 
+        self.head = prev
 
 if __name__ == "__main__":
     sll = SinglyLinkedList()
-    
+
     sll.print_list()
     sll.insert_at_end(1)
     sll.insert_at_end(2)
@@ -67,4 +77,6 @@ if __name__ == "__main__":
     sll.insert_at_end(100)
     sll.print_list()
     sll.delete_at_end()
+    sll.print_list()
+    sll.reverse()
     sll.print_list()
