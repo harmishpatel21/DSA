@@ -58,6 +58,14 @@ class SinglyLinkedList:
             prev = current
             current = next_node 
         self.head = prev
+    
+    def search(self, value):
+        current = self.head
+        while current is not None:
+            if current.data == value:
+                return 1
+            current = current.next
+        return 0
 
 if __name__ == "__main__":
     sll = SinglyLinkedList()
@@ -80,3 +88,9 @@ if __name__ == "__main__":
     sll.print_list()
     sll.reverse()
     sll.print_list()
+
+    value = 15
+    if sll.search(value):
+        print(f"Found {value}")
+    else:
+        print(f"Not Found")

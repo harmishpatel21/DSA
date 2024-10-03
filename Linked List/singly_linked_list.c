@@ -90,6 +90,16 @@ void reverse() {
     head = prev;
 }
 
+int search(int value) {
+    struct node *current = head;
+    while (current != NULL) {
+        if (current->data == value) {
+            return 1;
+        }
+        current = current->next;
+    }
+    return 0;
+}
 
 int main() {
     
@@ -115,6 +125,14 @@ int main() {
     printf("\n");
     reverse();
     printList();
+    
+    int valueToSearch = 2;
+    if (search(valueToSearch)) {
+        printf("\nValue %d found in the list.\n", valueToSearch);
+    } else {
+        printf("\nValue %d not found in the list.\n", valueToSearch);
+    }
+
     return 0;
 
 }

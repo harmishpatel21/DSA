@@ -1,59 +1,63 @@
 #include <stdio.h>
-#include <stdlib.h>
+#define MAXSIZE 5
 
-struct node {
+int stack[MAXSIZE];
+int top = -1;
+
+int isFull(){
+    return top == MAXSIZE - 1;
+}
+
+int isEmpty(){
+    return top == -1;
+}
+
+void printStack() {
+    if (isEmpty()) {
+        printf("Stack is empty!\n");
+    } else {
+        printf("Stack: ");
+        for (int i = 0; i <= top; i++) {
+            printf("%d ", stack[i]);
+        }
+        printf("\n");
+    }
+}
+
+int push(int data){
+    if(!isFull()) {
+        top = top + 1;
+        stack[top] = data;
+    } else {
+        printf("Stack is full!!");
+    }
+}
+
+int pop() {
     int data;
-    struct node *next;
-};
-struct node *head = NULL;
-struct node *current = NULL;
-
-void printList(){
-    struct node *p = head;
-    while(p!=NULL){
-        printf("%d ",p->data);
-        p = p->next;
+    if(!isEmpty()) {
+        data = stack[top];
+        top = top - 1;
+        return data;
+    } else {
+        printf("Stack is Empty!!");
     }
-}
-
-void insertAtBegin(int data){
-    struct node *newNode = (struct node*)malloc(sizeof(struct node));
-    newNode->data = data;
-    newNode->next = head;
-    head = newNode;
-}
-
-void insertAtEnd(int data) {
-    struct node *newNode = (struct node*)malloc(sizeof(struct node));
-    newNode->data = data;
-    newNode->next = NULL;
-
-    if (head == NULL) {
-        head = newNode;
-        return;
-    }
-
-    struct node *current = head;
-    while (current->next != NULL) {
-        current = current->next;
-    }
-    
-    current->next = newNode;
 }
 
 int main() {
+    push(44);
+    push(10);
+    push(50);
+    push(1);
+    push(44);
+    push(10);
+    push(50);
+    push(1);
     
-    insertAtEnd(100);
-    printList();
-    printf("\n");
-    insertAtBegin(1);
-    printList();
-    printf("\n");
-    insertAtBegin(2);
-    insertAtEnd(3);
-    insertAtEnd(1);
-    insertAtEnd(10);
-    printList();
-    return 0;
+    printStack();
 
+    int data = pop();
+    
+    printStack();
+    return 0;
 }
