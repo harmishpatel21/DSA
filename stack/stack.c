@@ -49,13 +49,7 @@ int main() {
     push(10);
     push(50);
     push(1);
-    push(44);
-    push(10);
-    push(50);
-    push(1);
-    
-    printStack();
-
+   
     int data = pop();
     
     printStack();
